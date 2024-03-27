@@ -7,7 +7,27 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="app" class="bg-red-600">Hello</div>
+    <div
+      id="app"
+      class="h-screen w-full flex flex-col justify-center items-center"
+    >
+      <div id="logo-section" class="mt-16 mb-4">
+        <img src="./logo.png" />
+      </div>
+      <div id="input-section" class="flex flex-col gap-2">
+        <input
+          placeholder="Bread or Cheese?"
+          id="userInput"
+          class="bg-gray-200 rounded-md p-2"
+        />
+        <button id="cartBtn" class="bg-red-400 rounded-md p-2 pointer">
+          Add To Cart
+        </button>
+      </div>
+      <div id="cart-section" class="h-full overflow-auto">
+        <ul id="cart-items"></ul>
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
