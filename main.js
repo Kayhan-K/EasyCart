@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, onValue, orderByKey } from "firebase/database";
+import { getDatabase, ref, push, onValue } from "firebase/database";
 
 const cartBtn = document.getElementById("cartBtn");
 const userInput = document.getElementById("userInput");
@@ -12,37 +12,44 @@ const firebaseSettings = {
 
 const app = initializeApp(firebaseSettings);
 const database = getDatabase(app);
-const itemsInDB = ref(database, "items");
 const cartInDb = ref(database, "Cart");
 
 cartBtn.addEventListener("click", () => {
   let cartItem = userInput.value;
-  let items = [];
-  items.push(cartItem);
 
-  push(itemsInDB, cartItem);
+  push(cartInDb, cartItem);
 
   clearInput();
-
-  displayNote(items);
 });
 
 onValue(cartInDb, function (snapshot) {
   let cartArray = Object.values(snapshot.val());
+  clearList();
 
   clearInput();
-  displayNote(cartArray);
+  displayItem(cartArray);
 });
+//extract and display items function, use object to convert to array.
+//reading the data from the database, it is recieved as a snapshot - extracted by the val() method.
 
 function clearInput() {
   userInput.value = "";
+}
+
+function clearList() {
   cartItems.innerHTML = "";
 }
 
-function displayNote(items) {
+function displayItem(items) {
   items.map((item) => {
     const listItem = document.createElement("li");
     listItem.innerText = item;
+    listItem.style.backgroundColor = "#F5F5F5";
+    listItem.style.borderRadius = "0.25rem";
+    listItem.style.padding = "0.5rem";
+
+    //carry on here stlying the list items and then proceed with scrimba
+
     cartItems.appendChild(listItem);
   });
 }

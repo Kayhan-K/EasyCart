@@ -14,18 +14,21 @@
       <div id="logo-section" class="mt-16 mb-4">
         <img src="./logo.png" />
       </div>
-      <div id="input-section" class="flex flex-col gap-2">
+      <div id="input-section" class="flex flex-col gap-2 w-5/6">
         <input
           placeholder="Bread or Cheese?"
           id="userInput"
           class="bg-gray-200 rounded-md p-2"
         />
-        <button id="cartBtn" class="bg-red-400 rounded-md p-2 pointer">
+        <button id="cartBtn" class="bg-red-300 rounded-md p-2 pointer">
           Add To Cart
         </button>
       </div>
-      <div id="cart-section" class="h-full overflow-auto">
-        <ul id="cart-items"></ul>
+      <div id="cart-section" class="h-full w-5/6 mt-4">
+        <ul
+          id="cart-items"
+          class="flex flex-wrap items-center justify-center grow gap-1 text-center"
+        ></ul>
       </div>
     </div>
     <script type="module" src="/main.js"></script>
