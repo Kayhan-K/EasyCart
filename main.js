@@ -74,8 +74,9 @@ function listItemStyling(listItem) {
   listItem.style.padding = "0.5rem";
   listItem.style.flexGrow = "1";
   listItem.style.cursor = "pointer";
+  listItem.style.fontFamily = "'Courier New', monospace";
   listItem.addEventListener("mouseenter", function () {
-    this.style.backgroundColor = "#FFECC7";
+    this.style.backgroundColor = "#F87171";
   });
   listItem.addEventListener("mouseleave", function () {
     this.style.backgroundColor = "#F5F5F5";
