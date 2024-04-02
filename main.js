@@ -14,6 +14,12 @@ const app = initializeApp(firebaseSettings);
 const database = getDatabase(app);
 const cartInDb = ref(database, "Cart");
 
+userInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    cartBtn.click();
+  }
+});
+
 cartBtn.addEventListener("click", () => {
   let cartItem = userInput.value;
 
@@ -23,11 +29,17 @@ cartBtn.addEventListener("click", () => {
 });
 
 onValue(cartInDb, function (snapshot) {
-  let cartArray = Object.entries(snapshot.val());
-  clearList();
-  clearInput();
-  displayItem(cartArray);
+  if (snapshot.exists()) {
+    let cartArray = Object.entries(snapshot.val());
+    clearList();
+    clearInput();
+    displayItem(cartArray);
+  } else {
+    console.log("Sorry no items in database...");
+    cartItems.innerHTML = "";
+  }
 });
+//snapshot exists allows you to edit last item in database for it to be removed.
 //extract and display items function, use object to convert to array.
 //reading the data from the database, it is recieved as a snapshot - extracted by the val() method.
 
@@ -62,4 +74,10 @@ function listItemStyling(listItem) {
   listItem.style.padding = "0.5rem";
   listItem.style.flexGrow = "1";
   listItem.style.cursor = "pointer";
+  listItem.addEventListener("mouseenter", function () {
+    this.style.backgroundColor = "#FFECC7";
+  });
+  listItem.addEventListener("mouseleave", function () {
+    this.style.backgroundColor = "#F5F5F5";
+  });
 }
